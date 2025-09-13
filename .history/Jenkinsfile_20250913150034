@@ -5,24 +5,24 @@ pipeline {
     }
     stages {
 
-        // stage("first stage") {
-        //     steps {
-        //         sh "terraform --version"
-        //     }
-        // }
+        stage("first stage") {
+            steps {
+                sh "terraform --version"
+            }
+        }
 
         stage('Checkout Code') {
             steps {
                 checkout scm
             }
         }
-        // stage('Terraform Init') {
-        //     steps {
-        //         script {
-        //             sh 'terraform init'
-        //         }
-        //     }
-        // }
+        stage('Terraform Init') {
+            steps {
+                script {
+                    sh 'terraform init'
+                }
+            }
+        }
         stage('Terraform Plan') {
             steps {
                 script {
