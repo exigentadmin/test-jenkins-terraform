@@ -1,0 +1,100 @@
+pipeline {
+    agent any
+    environment {
+        AWS_DEFAULT_REGION = 'us-east-1'
+        //NPM_CONFIG_CACHE = "${WORKSPACE}/.npm" // So files written are done so where the jenkins user has access.
+    }
+
+    stages {
+
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    echo $PATH
+                    npm install terraform
+                    cd /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+                    ls -la
+                '''
+            }
+        }
+    }
+}
+
+                    // cd node_modules
+                    // ls -la
+                    // cd terraform
+                    // ls -la
+                    // cd ..
+                    // ls -la
+                    // cd terraform
+                    // ls -la
+                    // cd ..
+
+// pipeline {
+//     agent any
+//     environment {
+//         AWS_DEFAULT_REGION = 'us-east-1'
+//     }
+//     stages {
+
+//         stage 
+
+//     //     stage("first stage") {
+//     //         steps {
+//     //             sh "terraform --version"
+//     //         }
+//     //     }
+
+//     //     stage('Checkout Code') {
+//     //         steps {
+//     //             checkout scm
+//     //         }
+//     //     }
+//     //     stage('Terraform Init') {
+//     //         steps {
+//     //             script {
+//     //                 sh 'terraform init'
+//     //             }
+//     //         }
+//     //     }
+//     //     stage('Terraform Plan') {
+//     //         steps {
+//     //             script {
+//     //                 sh 'terraform plan -out=tfplan'
+//     //             }
+//     //         }
+//     //     }
+//     //     stage('Terraform Apply') {
+//     //         steps {
+//     //             script {
+//     //                 sh 'terraform apply -auto-approve tfplan'
+//     //             }
+//     //         }
+//     //     }
+//     //     // stage('Upload State to S3') {
+//     //     //     steps {
+//     //     //         script {
+//     //     //             sh 'aws s3 cp terraform.tfstate s3://your-bucket-name'
+//     //     //         }
+//     //     //     }
+//     //     // }
+//     //     stage('Terraform Output') {
+//     //         steps {
+//     //             script {
+//     //                 sh 'terraform output'
+//     //             }
+//     //         }
+//     //     }
+//     // }
+//     post {
+//         always {
+//             cleanWs()
+//         }
+//     }
+// }
