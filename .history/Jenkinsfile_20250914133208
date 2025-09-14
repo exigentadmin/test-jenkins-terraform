@@ -21,20 +21,13 @@ pipeline {
                // docker run --rm terraform-docker terraform --version
             }
         }
-        stage('Checkout Code') {
+        stage('Terraform Plan') {
             steps {
-                checkout scm
-                sh 'ls -la'
+                sh '''
+                docker run --rm -v $(pwd):/terraform terraform-docker plan
+                '''
             }
         }
-
-        // stage('Terraform Plan') {
-        //     steps {
-        //         sh '''
-        //         docker run --rm -v $(pwd):/terraform terraform-docker plan
-        //         '''
-        //     }
-        // }
         
 
         // stage('Build') {
