@@ -17,24 +17,24 @@ pipeline {
             steps {
                 sh '''
                     echo $PATH
-                    npm install terraform
                     cd /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+                    npm install terraform
                     ls -la
+                    cd node_modules
+                    ls -la
+                    cd terraform
+                    ls -la
+                    cd ..
+                    ls -la
+                    cd terraform
+                    ls -la
+                    cd ..
+                    terraform --version
                 '''
             }
         }
     }
 }
-
-                    // cd node_modules
-                    // ls -la
-                    // cd terraform
-                    // ls -la
-                    // cd ..
-                    // ls -la
-                    // cd terraform
-                    // ls -la
-                    // cd ..
 
 // pipeline {
 //     agent any
