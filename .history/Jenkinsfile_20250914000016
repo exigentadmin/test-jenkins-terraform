@@ -11,9 +11,9 @@ pipeline {
                 }
             }
             steps {
-                // sh '''
-                // apk add terraform --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
-                // '''
+                sh '''
+                apk add terraform --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
+                '''
             }
         }
     }
@@ -23,7 +23,6 @@ pipeline {
         }
     }
 }
-
 
 
 
