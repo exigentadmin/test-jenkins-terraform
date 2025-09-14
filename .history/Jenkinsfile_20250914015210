@@ -17,9 +17,9 @@ pipeline {
             steps {
                 sh '''
                     npm install terraform
-                    ls -la
+                    ls
                     cd node_modules
-                    ls -la
+                    ls
                 '''
             }
         }
