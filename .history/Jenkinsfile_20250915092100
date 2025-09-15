@@ -40,6 +40,7 @@ pipeline {
                 sh '''
                 docker run --rm -v $(pwd):/terraform terraform-docker plan -out=tfplan
                 '''
+
             }
         }
         
