@@ -42,7 +42,6 @@ pipeline {
                 '''
             }
         }
-        }
         
         stage('Approve Plan') {
             steps {
@@ -63,7 +62,7 @@ pipeline {
         }
     }
 }
-
+}
 
         // stage('Build') {
         //     agent {
