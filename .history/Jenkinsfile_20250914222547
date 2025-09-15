@@ -36,7 +36,7 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS-CCIAB']]){
+                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my_aws_credential']]){
                 sh '''
                 docker run --rm -v $(pwd):/terraform terraform-docker plan -out=tfplan
                 '''
@@ -54,7 +54,7 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS-CCIAB']]){              
+                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my_aws_credential']]){              
                 sh '''
                 docker run --rm -v $(pwd):/terraform terraform-docker apply -auto-approve
                 '''
