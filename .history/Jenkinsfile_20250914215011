@@ -1,8 +1,9 @@
 pipeline {
     agent any
     environment {
-        AWS_ACCESS_KEY_ID = 
-        AWS_SECRET_ACCESS_KEY = "${env.AWS_SECRET_ACCESS_KEY}"  
+        withCredentials([usernamePassword(credentialsId: 'CCIAB', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
+            AWS_ACCESS_KEY_ID = "${env.AWS_ACCESS_KEY_ID}"
+            AWS_SECRET_ACCESS_KEY = "${env.AWS_SECRET_ACCESS_KEY}"  
 }
         AWS_DEFAULT_REGION = 'us-east-1'
     }
@@ -55,11 +56,9 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                withAWS(credentials: 'AWS-CCIAB', region: 'us-east-1') {                
                 sh '''
                 docker run --rm -v $(pwd):/terraform terraform-docker apply -auto-approve
                 '''
-                }
             }
         }
 
